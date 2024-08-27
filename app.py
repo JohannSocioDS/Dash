@@ -1,4 +1,4 @@
-pip install openpyxl
+conda to install openpyxl
 
 import pandas as pd
 import streamlit as st
