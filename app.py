@@ -38,4 +38,3 @@ for variable in variables_dashboard:
                  labels={'x': variable, 'y': 'Cantidad de Respuestas'})
     st.plotly_chart(fig)
 
-!streamlit run app.py & npx localtunnel --port 8501
