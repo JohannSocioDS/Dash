@@ -4,7 +4,7 @@ import plotly.express as px
 
 
 # Cargar los datos (reemplaza 'ruta/a/tu/archivo.xlsx' con la ruta real)
-IDATA = pd.read_excel('/content/IPY_Encuesta Diagnóstica sobre Inclusión y Discapacidad.xlsx')
+IDATA = pd.read_excel('IPY_Encuesta Diagnóstica sobre Inclusión y Discapacidad.xlsx')
 
 # Reemplazar valores numéricos por etiquetas de texto
 for column in IDATA.columns:
