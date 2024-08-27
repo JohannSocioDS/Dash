@@ -1,8 +1,8 @@
 import pandas as pd
-import plotly as pl
+
 import streamlit as st
 import plotly.express as px
-import plotly.graph_objects as go
+
 import matplotlib.pyplot as plt
 
 # Cargar los datos (reemplaza 'ruta/a/tu/archivo.xlsx' con la ruta real)
