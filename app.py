@@ -1,9 +1,7 @@
 import pandas as pd
-
 import streamlit as st
 import plotly.express as px
 
-import matplotlib.pyplot as plt
 
 # Cargar los datos (reemplaza 'ruta/a/tu/archivo.xlsx' con la ruta real)
 IDATA = pd.read_excel('/content/IPY_Encuesta Diagnóstica sobre Inclusión y Discapacidad.xlsx')
