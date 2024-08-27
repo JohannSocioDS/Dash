@@ -20,6 +20,8 @@ variables_dashboard = ['Grupo_etario', 'Género.', 'Cargo ',
                        'Promueve_inclusion', 'Empresa_preparada_incluir',
                        'Cultura_organizacional_facilitaria', 'Infraestructura_adecuada',
                        'Liderazgo_Inclusivo ', 'Equipo', 'Capacitaciones_inclusion']
+# Definir el orden de las categorías
+orden_respuestas = ["Muy de acuerdo", "De acuerdo", "Ni de acuerdo ni en desacuerdo", "En desacuerdo", "Muy en desacuerdo"]
 
 # Título del dashboard
 st.title("Dashboard de Inclusión y Discapacidad")
@@ -29,10 +31,10 @@ for variable in variables_dashboard:
     st.subheader(f"Análisis de {variable}")
     
     # Contar las respuestas
-    conteo = IDATA[variable].value_counts()
-    
+    conteo = IDATA[variable].value_counts().reindex(orden_respuestas, fill_value=0)
+    porcentaje = (conteo / conteo.sum()) * 100
     # Crear un gráfico de barras interactivo con Plotly
-    fig = px.bar(conteo, x=conteo.index, y=conteo.values, 
+    fig = px.bar(conteo, x=porcentaje.index, y=conteo.values, 
                  labels={'x': variable, 'y': 'Cantidad de Respuestas'})
     st.plotly_chart(fig)
 
