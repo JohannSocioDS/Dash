@@ -41,19 +41,15 @@ with st.sidebar:
     parGrupoEtario = st.selectbox('Grupo_etario',options=IDATA['Grupo_etario'].unique())
 
 
-# Crear gráficos para cada variable del dashboard
-for variable in variables_dashboard:
-    st.subheader(f"Análisis de {variable} según {var_select}")
-
-    # Contar las respuestas agrupadas por la variable seleccionada
-    conteo = IDATA.groupby([var_select, variable]).size().unstack().fillna(0)
-    conteo = conteo[orden_respuestas].apply(lambda x: x / x.sum() * 100, axis=1)  # Convertir a porcentaje
-
-    # Crear gráfico de barras apiladas
-    fig = px.bar(conteo, x=conteo.index, y=orden_respuestas, 
-                 title=f'Porcentaje de Respuestas para {variable} según {var_select}',
-                 labels={'value': 'Porcentaje', 'index': var_select},
-                 text_auto=True)
-    fig.update_layout(yaxis=dict(tickformat='%'))
-    st.plotly_chart(fig)
-
+c1,c2 = st.columns([60,40])
+with c1:
+     EmpresaCategoria = IDATA.groupby('Liderazgo_Inclusivo').agg({'Total':'sum'}).reset_index().sort_values(by='Total',ascending=False)
+    fig = px.bar(IDATA, x='Liderazgo_Inclusivo',y='Porcentaje', title=f'Liderazgo inclusivo: {parGenero, parCargo, parGrupoEtario}', color='orden_respuesta',text_auto=',.0f')
+    fig.update_layout(showlegend=False) #Determina si se muestra o no la leyenda
+    st.plotly_chart(fig,use_container_width=True)
+ 
+with c2:
+    EmpresaCategoria = IDATA.groupby('Liderazgo_Inclusivo').agg({'Total':'sum'}).reset_index().sort_values(by='Total',ascending=False)
+    fig = px.bar(IDATA, x='Liderazgo_Inclusivo',y='Porcentaje', title=f'Liderazgo inclusivo: {parGenero, parCargo, parGrupoEtario}', color='orden_respuesta',text_auto=',.0f')
+    fig.update_layout(showlegend=False) #Determina si se muestra o no la leyenda
+    st.plotly_chart(fig,use_container_width=True)
