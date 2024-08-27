@@ -21,7 +21,6 @@ for column in IDATA.columns:
         })
 
 # Variables para el dashboard
-var_in = ['Grupo_etario', 'Género.', 'Cargo ']
 variables_dashboard = ['Promueve_inclusion', 'Empresa_preparada_incluir',
                        'Cultura_organizacional_facilitaria', 'Infraestructura_adecuada',
                        'Liderazgo_Inclusivo ', 'Equipo', 'Capacitaciones_inclusion']
@@ -32,8 +31,15 @@ orden_respuestas = ["Muy de acuerdo", "De acuerdo", "Ni de acuerdo ni en desacue
 # Configuración del dashboard
 st.title("Dashboard de Inclusión y Discapacidad")
 
-# Seleccionar la variable independiente
-var_select = st.selectbox('Selecciona una variable para analizar:', var_in)
+#filtros
+with st.sidebar:
+    # Filtro de años
+    parGenero = st.selectbox('Género.',options=IDATA['Género.'].unique(),index=0)
+    # Filtro de Mes    
+    parCargo = st.selectbox('Cargo ',options=IDATA['Cargo '].unique(),index=0)
+    # Filtro de País
+    parGrupoEtario = st.selectbox('Grupo_etario',options=IDATA['Grupo_etario'].unique())
+
 
 # Crear gráficos para cada variable del dashboard
 for variable in variables_dashboard:
